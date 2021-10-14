@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
-import HighScoreTable from "./HighScoreTable";
+// import HighScoreTable from "./HighScoreTable";
+import AllTables from "./HighScoreTable";
 
 function App() {
   return (
@@ -8,8 +9,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <div class="wrapper">
-          <h2>High Scores per Country</h2>
-          <HighScoreTable/>
+          <AllTables/>
         </div>
         <a
           className="App-link"
