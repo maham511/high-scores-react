@@ -1,3 +1,6 @@
+/* eslint-disable comma-dangle */
+/* eslint-disable object-curly-spacing */
+/* eslint-disable no-trailing-spaces */
 let allCountryScores = [
     {
       name: "Ethiopia", 
