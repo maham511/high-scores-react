@@ -14,16 +14,43 @@ import allCountryScores from "./scores";
 
 console.log(allCountryScores); //logs arr of 8 obj elems
 
+// const AllTables = () => {
+//   return (
+//     <div className="wrapper">
+//       <h2>High Scores per Country</h2>
+//       {allCountryScores.map((country) => (
+//         <HighScoreTable country={country} />
+//       ))}
+//     </div>
+//   );
+// };
+
 const AllTables = () => {
+  function compare(a, b) {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  }
+   const sortedCountries = allCountryScores.sort(compare);
+
+   console.log(sortedCountries);
+  
   return (
     <div className="wrapper">
       <h2>High Scores per Country</h2>
-      {allCountryScores.map((country) => (
-        <HighScoreTable country={country} />
-      ))}
+      {
+        sortedCountries.map((country, index) => (
+        <HighScoreTable country={country} key={index} />
+        ))
+      }
     </div>
   );
 };
+
 
 //map through scores arr
 //for each row renders name & score
@@ -56,5 +83,23 @@ const PlayerScore = ({ name, score }) => {
     </tr>
   );
 };
+
+
+//Sort tables in alphabetical order of country name
+  // Take allCoutryScores arr
+  //  sort arr alphabetically using country.name
+  // return sorted arr
+
+  // function compare(a, b) {
+  //   if (a.name < b.name) {
+  //     return -1;
+  //   }
+  //   if (a.name > b.name) {
+  //     return 1;
+  //   }
+  //   return 0;
+  // }
+  // allCountryScores.sort(compare);
+console.log(allCountryScores);
 
 export default AllTables;
