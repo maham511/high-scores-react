@@ -14,18 +14,9 @@ import allCountryScores from "./scores";
 
 console.log(allCountryScores); //logs arr of 8 obj elems
 
-// const AllTables = () => {
-//   return (
-//     <div className="wrapper">
-//       <h2>High Scores per Country</h2>
-//       {allCountryScores.map((country) => (
-//         <HighScoreTable country={country} />
-//       ))}
-//     </div>
-//   );
-// };
-
 const AllTables = () => {
+
+  // function to sort allCountryScores arr alphabetically using name property value
   function compare(a, b) {
     if (a.name < b.name) {
       return -1;
@@ -35,38 +26,34 @@ const AllTables = () => {
     }
     return 0;
   }
-   const sortedCountries = allCountryScores.sort(compare);
+  const sortedCountriesArr = allCountryScores.sort(compare);
 
-   console.log(sortedCountries);
-  
   return (
     <div className="wrapper">
       <h2>High Scores per Country</h2>
-      {
-        sortedCountries.map((country, index) => (
+      {sortedCountriesArr.map((country, index) => (
         <HighScoreTable country={country} key={index} />
-        ))
-      }
+      ))}
     </div>
   );
 };
-
 
 //map through scores arr
 //for each row renders name & score
 //pass name & score as 2 different props in PlayerScore component
 //Use props in playerscore to rnder row
-
 const HighScoreTable = ({ country }) => {
   return (
     <div className="country-div">
       <h3>High Scores: {country.name}</h3>
       <table>
         <tbody>
-          {/*Map scores arr, render PlayerScore row for each player. Name & score props created to access n & s values  */}
-          {country.scores.map((score) => (
-            <PlayerScore name={score.n} score={score.s} />
-          ))}
+          {/*Scores arr sorted in descending order of s property values, then mapped to render PlayerScore row for each player. Name & score props created to access n & s values  */}
+          {country.scores
+            .sort((a, b) => b.s - a.s)
+            .map((score, index) => (
+              <PlayerScore name={score.n} score={score.s} key={index} />
+            ))}
         </tbody>
       </table>
     </div>
@@ -83,23 +70,5 @@ const PlayerScore = ({ name, score }) => {
     </tr>
   );
 };
-
-
-//Sort tables in alphabetical order of country name
-  // Take allCoutryScores arr
-  //  sort arr alphabetically using country.name
-  // return sorted arr
-
-  // function compare(a, b) {
-  //   if (a.name < b.name) {
-  //     return -1;
-  //   }
-  //   if (a.name > b.name) {
-  //     return 1;
-  //   }
-  //   return 0;
-  // }
-  // allCountryScores.sort(compare);
-console.log(allCountryScores);
 
 export default AllTables;
