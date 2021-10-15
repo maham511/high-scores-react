@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 1px solid rgb(221, 233, 110);
+  padding: 40px;
+}
+
+.country-div{
+   border: 5px solid teal;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin:10px;
+}
+
+table{
+  border: 1px solid white;
+  border-collapse: collapse;
+  margin: 10px; 
+  } 
+
+td{
+  border-bottom: 1pt solid white;
+}
