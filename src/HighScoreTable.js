@@ -16,13 +16,13 @@ console.log(allCountryScores); //logs arr of 8 obj elems
 
 const AllTables = () => {
 return (
-    <div class='wrapper'>
-    <h2>High Scores per Country</h2>
-   {allCountryScores.map((country) => (
-     <HighScoreTable country={country}/>
-   )   
-  )}
-  </div>
+    <div className='wrapper'>
+      <h2>High Scores per Country</h2>
+      {allCountryScores.map((countryInfo) => (
+      <HighScoreTable countryInfo={countryInfo}/>
+    )   
+    )}
+    </div>
 );
 };
 
@@ -31,27 +31,56 @@ return (
 //pass name & score as 2 different props in PlayerScore component
 //Use props in playerscore to rnder row
 
-const HighScoreTable = (props) => {
+const HighScoreTable = ({ countryInfo }) => {
+  
+    console.log(countryInfo.scores);
+  
   return (
     <div className="country-div">
-      <h3>High Scores: {props.country.name}</h3>
+      <h3>High Scores: {countryInfo.name}</h3>
       <table>
         <tbody>
-          <PlayerScore name={}/>
+          {/*Maps through scores arr, renders playerscore row for each player  */}
+          {countryInfo.scores.map((playerScore) => (
+            <PlayerScore name={playerScore.n} score={playerScore.s} />
+          ))}
         </tbody>
       </table>
     </div>
   );
 };
 
-const PlayerScore = (props) => {
+const PlayerScore = ({ name, score }) => {
   return (
     <tr>
       <th scope="row"></th>
-      <td>{}</td>
-      <td>{}</td>
+      <td>{name}</td>
+      <td>{score}</td>
     </tr>
   );
 };
+
+// const HighScoreTable = (props) => {
+//   return (
+//     <div className="country-div">
+//       <h3>High Scores: {props.countryInfo.name}</h3>
+//       <table>
+//         <tbody>
+//           <PlayerScore name={} score={}/>
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// };
+
+// const PlayerScore = (props) => {
+//   return (
+//     <tr>
+//       <th scope="row"></th>
+//       <td>{props.}</td>
+//       <td>{props.}</td>
+//     </tr>
+//   );
+// };
 
 export default AllTables;
